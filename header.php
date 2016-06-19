@@ -11,9 +11,21 @@
 
 <div id="banner">
 
-<div id="welcome"></div>
+<div id="welcome">
+<?php if (isset($_SESSION['user_id'])) : ?>
+<span>Welcome<br><?php echo $_SESSION['username']; ?></span>
+<?php else : ?>
+<span><i>guest</i></span>
+<?php endif; ?>
+</div>
 
-<div id="logout"></div>
+<div id="logout">
+<?php if (isset($_SESSION['user_id'])) : ?>
+<form action="index.php" method="post">
+<span><input class="button_logout" type="submit" value="Logout" name="logout"></span>
+</form>
+<?php endif; ?>
+</div>
 
 <div id="title">E-Fresh Billing System</div>
 
