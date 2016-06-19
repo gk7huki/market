@@ -27,9 +27,19 @@
 <?php endif; ?>
 </div>
 
+<?php
+  $menu1 = 'menu_inactive';
+  $filename = basename($_SERVER['REQUEST_URI'], '.php');
+  if ($filename == 'bill') {
+    $menu1 = 'menu_active';
+  }
+?>
+
 <div id="title">E-Fresh Billing System</div>
 
-<div id="menu"></div>
+<div id="menu">
+<div id="<?php echo $menu1; ?>"><a href="bill.php">Bill</a></div>
+</div>
 
 </div>
 
