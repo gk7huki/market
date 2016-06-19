@@ -48,6 +48,23 @@
 
   session_start();
 
+  if (isset($_POST['login'], $_POST['username'], $_POST['password'])) {
+    $name = $_POST['username'];
+    $pass = $_POST['password'];
+    if (login($name, $pass) == false) {
+      header("Location: login.php");
+    } else {
+      header("Location: index.php");
+    }
+    exit();
+  }
+
+  if (isset($_POST['logout'])) {
+    session_destroy();
+    header("Location: login.php");
+    exit();
+  }
+
   if (!login_check()) {
     header("Location: login.php");
     exit();
