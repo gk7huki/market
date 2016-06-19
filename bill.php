@@ -1,6 +1,22 @@
 <?php include 'protect.php'; ?>
 <?php include 'header.php'; ?>
 
+<script type="text/javascript">
+  function PrintDiv() {
+    var divToPrint = document.getElementById('print_div');
+    var popupWin = window.open('', '_blank', 'width=300,height=300');
+    popupWin.document.open();
+    popupWin.document.write('<html><head>' +
+        '<link rel="stylesheet" href="style.css" type="text/css"></head>' +
+        '<body><div id="box_text" style="padding: 10px;">' + divToPrint.innerHTML +
+        '</div></body></html>');
+    popupWin.document.close();
+    popupWin.focus();
+    popupWin.print();
+    popupWin.close();
+  }
+</script>
+
 <div id="box_text">
 
 <h2>Create Bill</h2>
@@ -35,6 +51,49 @@
   $result = mysqli_query($conn, $sql);
 ?>
 
+<div id="print_div">
+<div id="print_title">Receipt</div><br>
+<div id="print_text">
+Date: <span style="float: right;"><?php echo date('d M Y H:i:s'); ?></span>
+<hr>
+<table align="center" border="0" style="width: 100%;">
+<tr>
+<th>Item</th>
+<th>Qty</th>
+<th>Rate</th>
+<th>Amt</th>
+</tr>
+<?php
+  $bill_total = 0;
+  while ($row = mysqli_fetch_assoc($result)) {
+    $id = $row['id'];
+    $prodid = $row['prodid'];
+    $name = $row['name'];
+    $unit = $row['unit'];
+    $qty = $row['qty'];
+    $total = $row['total'];
+?>
+<tr>
+<?php if (!empty($name)) : ?>
+<?php $bill_total += $total; ?>
+<td><?php echo "$name"; ?></td>
+<td><?php echo "$qty"; ?></td>
+<td><?php echo number_format($unit, 2); ?></td>
+<td><?php echo number_format($total, 2); ?></td>
+<?php endif; ?>
+</tr>
+<?php
+  }
+?>
+</table>
+<hr>
+<b>Total: <span style="float: right;">Rs. <?php echo number_format($bill_total, 2);; ?></span></b>
+<hr>
+</div>
+<br>
+<div id="print_footer">Thank You!</div>
+</div>
+
 <form action="" method="post">
 <table align="center" border="0" cellspacing="2" cellpadding="2">
 <tr>
@@ -47,6 +106,7 @@
 </tr>
 
 <?php
+  mysqli_data_seek($result, 0);
   while ($row = mysqli_fetch_assoc($result)) {
     $id = $row['id'];
     $prodid = $row['prodid'];
@@ -91,7 +151,7 @@
 </tr>
 
 <tr>
-<td></td>
+<td><input class="button_print" type="button" value="Print" onclick="PrintDiv();"></td>
 <td colspan="4"></td>
 <td><input class="button_clear" type="submit" value="New Bill" name="clear"></td>
 </tr>
