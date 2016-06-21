@@ -45,6 +45,16 @@
     exit();
   }
 
+  if (isset($_SESSION['customer_id'])) {
+    $id = $_SESSION['customer_id'];
+    $sql = "SELECT name, phone FROM customers WHERE id=$id";
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($result);
+
+    $customer_name = $row['name'];
+    $customer_phone = $row['phone'];
+  }
+
   $sql = "SELECT b.id, b.prodid, ".
       "i.name, i.unit, b.qty, b.qty * i.unit as 'total'".
       "FROM bill b LEFT JOIN inventory i ON b.prodid = i.id";
@@ -54,7 +64,8 @@
 <div id="print_div">
 <div id="print_title">Receipt</div><br>
 <div id="print_text">
-Date: <span style="float: right;"><?php echo date('d M Y H:i:s'); ?></span>
+Date: <span style="float: right;"><?php echo date('d M Y H:i:s'); ?></span><br>
+Customer: <span style="float: right;"><?php echo $customer_name; ?></span>
 <hr>
 <table align="center" border="0" style="width: 100%;">
 <tr>
@@ -92,6 +103,18 @@ Date: <span style="float: right;"><?php echo date('d M Y H:i:s'); ?></span>
 </div>
 <br>
 <div id="print_footer">Thank You!</div>
+</div>
+
+<div>
+<form action="customers.php" method="post">
+<p><b>Customer: </b></p>
+<?php if ($customer_name) : ?>
+<p><?php echo $customer_name; ?></p>
+<p><input class="button_insert" type="submit" value="Change" name="customer"></p>
+<?php else : ?>
+<p><input class="button_insert" type="submit" value="Select" name="customer"></p>
+<?php endif; ?>
+</form>
 </div>
 
 <form action="" method="post">
@@ -183,6 +206,8 @@ Date: <span style="float: right;"><?php echo date('d M Y H:i:s'); ?></span>
     if (!$retval) {
       echo "Could not clear values: " . mysqli_error($conn) . "<br>\n";
     }
+
+    $_SESSION['customer_id'] = '';
 
     header("Location: " . $_SERVER['REQUEST_URI']);
     exit();
