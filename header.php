@@ -28,7 +28,7 @@
 </div>
 
 <?php
-  $menu1 = $menu2 = $menu3 = 'menu_inactive';
+  $menu1 = $menu2 = $menu3 = $menu4 = 'menu_inactive';
   $filename = basename($_SERVER['SCRIPT_NAME'], '.php');
   if ($filename == 'bill') {
     $menu1 = 'menu_active';
@@ -36,6 +36,8 @@
     $menu2 = 'menu_active';
   } else if ($filename == 'inventory') {
     $menu3 = 'menu_active';
+  } else if ($filename == 'info') {
+    $menu4 = 'menu_active';
   }
 ?>
 
@@ -45,6 +47,7 @@
 <div id="<?php echo $menu1; ?>"><a href="bill.php">Bill</a></div>
 <div id="<?php echo $menu2; ?>"><a href="customers.php">Customers</a></div>
 <div id="<?php echo $menu3; ?>"><a href="inventory.php">Inventory</a></div>
+<div id="<?php echo $menu4; ?>"><a href="info.php">Info</a></div>
 </div>
 
 </div>
