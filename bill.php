@@ -4,7 +4,7 @@
 <script type="text/javascript">
   function PrintDiv() {
     var divToPrint = document.getElementById('print_div');
-    var popupWin = window.open('', '_blank', 'width=300,height=300');
+    var popupWin = window.open('', '_blank', 'width=300,height=375');
     popupWin.document.open();
     popupWin.document.write('<html><head>' +
         '<link rel="stylesheet" href="style.css" type="text/css"></head>' +
@@ -62,6 +62,13 @@
 ?>
 
 <div id="print_div">
+<div id="print_header">
+<b><?php echo $_SESSION['store_name']; ?></b>
+<div id="print_text">
+<?php echo $_SESSION['store_addr']; ?><br>
+Phone: <?php echo $_SESSION['store_phone']; ?>
+</div>
+</div><br>
 <div id="print_title">Receipt</div><br>
 <div id="print_text">
 Date: <span style="float: right;"><?php echo date('d M Y H:i:s'); ?></span><br>

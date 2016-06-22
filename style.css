@@ -272,12 +272,19 @@ body
   max-width: 300px;
 }
 
+#print_header
+{
+  text-align: center;
+  font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+}
+
 #print_title
 {
   text-align: center;
   font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
   font-weight: bold;
   text-decoration: underline;
+  font-size: 80%;
 }
 
 #print_text
