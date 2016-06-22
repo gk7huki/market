@@ -10,7 +10,8 @@
 
   function login($username, $pass) {
     global $conn;
-    $sql = "SELECT id, username, password FROM members WHERE username = '$username'";
+    $sql = "SELECT id, username, password, name, address, phone ".
+        "FROM members WHERE username = '$username'";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
     if (!$row || $row['password'] != $pass) {
@@ -21,6 +22,10 @@
     $_SESSION['user_id'] = $row['id'];
     $_SESSION['username'] = $row['username'];
     $_SESSION['login_string'] = $row['password'];
+
+    $_SESSION['store_name'] = $row['name'];
+    $_SESSION['store_addr'] = $row['address'];
+    $_SESSION['store_phone'] = $row['phone'];
     return true;
   }
 
