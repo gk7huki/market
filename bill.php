@@ -76,10 +76,10 @@ Customer: <span style="float: right;"><?php echo $customer_name; ?></span>
 <hr>
 <table align="center" border="0" style="width: 100%;">
 <tr>
-<th>Item</th>
-<th>Qty</th>
-<th>Rate</th>
-<th>Amt</th>
+<th style="text-align:left">Item</th>
+<th style="text-align:center">Qty</th>
+<th style="text-align:right">Rate</th>
+<th style="text-align:right">Amt</th>
 </tr>
 <?php
   $bill_total = 0;
@@ -94,10 +94,10 @@ Customer: <span style="float: right;"><?php echo $customer_name; ?></span>
 <tr>
 <?php if (!empty($name)) : ?>
 <?php $bill_total += $total; ?>
-<td><?php echo "$name"; ?></td>
-<td><?php echo "$qty"; ?></td>
-<td><?php echo number_format($unit, 2); ?></td>
-<td><?php echo number_format($total, 2); ?></td>
+<td style="text-align:left"><?php echo "$name"; ?></td>
+<td style="text-align:center"><?php echo "$qty"; ?></td>
+<td style="text-align:right"><?php echo number_format($unit, 2); ?></td>
+<td style="text-align:right"><?php echo number_format($total, 2); ?></td>
 <?php endif; ?>
 </tr>
 <?php
@@ -105,7 +105,12 @@ Customer: <span style="float: right;"><?php echo $customer_name; ?></span>
 ?>
 </table>
 <hr>
-<b>Total: <span style="float: right;">Rs. <?php echo number_format($bill_total, 2);; ?></span></b>
+<table align="center" border="0" style="width: 100%;">
+<th style="text-align:left">Total: </th>
+<th style="text-align:center"></th>
+<th style="text-align:right">Rs.</th>
+<th style="text-align:right"><?php echo number_format($bill_total, 2); ?></th>
+</table>
 <hr>
 </div>
 <br>
@@ -127,12 +132,12 @@ Customer: <span style="float: right;"><?php echo $customer_name; ?></span>
 <form action="" method="post">
 <table align="center" border="0" cellspacing="2" cellpadding="2">
 <tr>
-<th>Prod ID</th>
-<th>Item Name</th>
-<th>Unit Price</th>
-<th>Quantity</th>
-<th>Total Price</th>
-<th><input style="display:none;" type="submit" value="Add" name="insert"></th>
+<th style="text-align:center">Prod ID</th>
+<th style="text-align:left">Item Name</th>
+<th style="text-align:right">Unit Price</th>
+<th style="text-align:center">Quantity</th>
+<th style="text-align:right">Total Price</th>
+<th style="text-align:center"><input style="display:none;" type="submit" value="Add" name="insert"></th>
 </tr>
 
 <?php
@@ -148,42 +153,42 @@ Customer: <span style="float: right;"><?php echo $customer_name; ?></span>
 
 <tr>
 <?php if (!empty($name)) : ?>
-<td><?php echo "$prodid"; ?></td>
-<td><?php echo "$name"; ?></td>
-<td><?php echo number_format($unit, 2); ?></td>
-<td><?php echo "$qty"; ?></td>
-<td><?php echo number_format($total, 2); ?></td>
+<td style="text-align:center"><?php echo "$prodid"; ?></td>
+<td style="text-align:left"><?php echo "$name"; ?></td>
+<td style="text-align:right"><?php echo number_format($unit, 2); ?></td>
+<td style="text-align:center"><?php echo "$qty"; ?></td>
+<td style="text-align:right"><?php echo number_format($total, 2); ?></td>
 <?php else : ?>
-<td><i><?php echo "$prodid"; ?></i></td>
-<td><i>Unavailable</i></td>
-<td><i>--</i></td>
-<td><i>--</i></td>
-<td><i>--</i></td>
+<td style="text-align:center"><i><?php echo "$prodid"; ?></i></td>
+<td style="text-align:left"><i>Unavailable</i></td>
+<td style="text-align:right"><i>--</i></td>
+<td style="text-align:center"><i>--</i></td>
+<td style="text-align:right"><i>--</i></td>
 <?php endif; ?>
-<td><button class="button_remove" type="submit" value="<?php echo "$id"; ?>" name="remove">Remove</button></td>
+<td style="text-align:center"><button class="button_remove" type="submit" value="<?php echo "$id"; ?>" name="remove">Remove</button></td>
 </tr>
 
 <?php
   }
 ?>
-<tr>
 
-<td><input id="box_input" type="text" name="ins_id" autofocus></td>
-<td></td>
-<td></td>
-<td><input id="box_input" type="text" name="ins_qty"></td>
-<td></td>
-<td><input class="button_insert" type="submit" value="Add" name="insert"></td>
+<tr>
+<td style="text-align:center"><input id="box_input" type="text" name="ins_id" autofocus></td>
+<td style="text-align:left"></td>
+<td style="text-align:right"></td>
+<td style="text-align:center"><input id="box_input" type="text" name="ins_qty"></td>
+<td style="text-align:right"></td>
+<td style="text-align:center"><input class="button_insert" type="submit" value="Add" name="insert"></td>
 </tr>
 
-<tr>
+<tr height="30px">
 <td colspan="6"></td>
 </tr>
 
 <tr>
-<td><input class="button_print" type="button" value="Print" onclick="PrintDiv();"></td>
+<td style="text-align:center"><input class="button_print" type="button" value="Print" onclick="PrintDiv();"></td>
 <td colspan="4"></td>
-<td><input class="button_clear" type="submit" value="New Bill" name="clear"></td>
+<td style="text-align:center"><input class="button_clear" type="submit" value="New Bill" name="clear"></td>
 </tr>
 
 </table>
