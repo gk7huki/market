@@ -219,7 +219,7 @@ Customer: <span style="float: right;"><?php echo $customer_name; ?></span>
       echo "Could not clear values: " . mysqli_error($conn) . "<br>\n";
     }
 
-    $_SESSION['customer_id'] = '';
+    unset($_SESSION['customer_id']);
 
     header("Location: " . $_SERVER['REQUEST_URI']);
     exit();
