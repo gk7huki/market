@@ -52,6 +52,7 @@
   }
 
   session_start();
+  ob_start();
 
   if (isset($_POST['login'], $_POST['username'], $_POST['password'])) {
     $name = $_POST['username'];
