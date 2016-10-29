@@ -117,18 +117,6 @@ Customer: <span style="float: right;"><?php echo $customer_name; ?></span>
 <div id="print_footer">Thank You!</div>
 </div>
 
-<div>
-<form action="customers.php" method="post">
-<p><b>Customer: </b></p>
-<?php if ($customer_name) : ?>
-<p><?php echo $customer_name; ?></p>
-<p><input class="button_insert" type="submit" value="Change" name="customer"></p>
-<?php else : ?>
-<p><input class="button_insert" type="submit" value="Select" name="customer"></p>
-<?php endif; ?>
-</form>
-</div>
-
 <form action="" method="post">
 <table align="center" border="0" cellspacing="2" cellpadding="2">
 <tr>
@@ -186,8 +174,10 @@ Customer: <span style="float: right;"><?php echo $customer_name; ?></span>
 </tr>
 
 <tr>
-<td style="text-align:center"><input class="button_print" type="button" value="Print" onclick="PrintDiv();"></td>
-<td colspan="4"></td>
+<td style="text-align:center"><input class="button_insert" type="submit" value="Customer" name="customer"></td>
+<td style="text-align:left"><?php echo $customer_name; ?></td>
+<td colspan="2"></td>
+<td style="text-align:right"><input class="button_print" type="button" value="Print" onclick="PrintDiv();"></td>
 <td style="text-align:center"><input class="button_clear" type="submit" value="New Bill" name="clear"></td>
 </tr>
 
@@ -195,6 +185,11 @@ Customer: <span style="float: right;"><?php echo $customer_name; ?></span>
 </form>
 
 <?php
+  if (isset($_POST['customer'])) {
+    header("Location: customers.php");
+    exit();
+  }
+
   if (isset($_POST['remove'])) {
     $id = $_POST['remove'];
     $sql = "DELETE FROM bill WHERE id=$id";
