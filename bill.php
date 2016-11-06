@@ -106,10 +106,12 @@ Customer: <span style="float: right;"><?php echo $customer_name; ?></span>
 </table>
 <hr>
 <table align="center" border="0" style="width: 100%;">
+<tr>
 <th style="text-align:left">Total: </th>
 <th style="text-align:center"></th>
 <th style="text-align:right">Rs.</th>
 <th style="text-align:right"><?php echo number_format($bill_total, 2); ?></th>
+</tr>
 </table>
 <hr>
 </div>
