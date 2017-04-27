@@ -3,6 +3,8 @@ E-Billing System
 
 A barebones billing system in PHP.
 
+![Login screen](screen_login.png)
+
 TODO
 ----
 
